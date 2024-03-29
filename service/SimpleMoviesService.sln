@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMoviesService", "SimpleMoviesService\SimpleMoviesService.csproj", "{878489DA-66FB-4848-831F-91C563474004}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMoviesService.FunctionalTests", "SimpleMoviesService.FunctionalTests\SimpleMoviesService.FunctionalTests.csproj", "{C2B8850C-B820-45AA-8575-DE54B2F0D7D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{878489DA-66FB-4848-831F-91C563474004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{878489DA-66FB-4848-831F-91C563474004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{878489DA-66FB-4848-831F-91C563474004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{878489DA-66FB-4848-831F-91C563474004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2B8850C-B820-45AA-8575-DE54B2F0D7D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2B8850C-B820-45AA-8575-DE54B2F0D7D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2B8850C-B820-45AA-8575-DE54B2F0D7D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2B8850C-B820-45AA-8575-DE54B2F0D7D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
