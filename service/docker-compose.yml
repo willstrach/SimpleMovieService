@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  simplemoviesservice:
+    container_name: simplemoviesservice
+    image: ${DOCKER_REGISTRY-}simplemoviesservice
+    build:
+      context: .
+      dockerfile: SimpleMoviesService/Dockerfile
+    depends_on:
+        - simplemoviesdatabase
+
+  simplemoviesdatabase:
+    container_name: simplemoviesdatabase
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+        ACCEPT_EULA: Y
+        MSSQL_SA_PASSWORD: SimpleMoviePassword2024!
+    ports:
+        - 1433:1433
