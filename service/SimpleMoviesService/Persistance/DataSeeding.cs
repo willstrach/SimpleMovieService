@@ -58,7 +58,7 @@ public static class DataSeeding
                 .Split(",")
                 .Select(genre => genre.Trim());
 
-            movie.Genres = context.Genres
+            movie.Genres = genres
                 .Where(genre => seedMovieGenres.Contains(genre.Name))
                 .ToList();
 
