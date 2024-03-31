@@ -1,14 +1,6 @@
 version: '3.4'
 
 services:
-  simplemoviesservice:
-    container_name: simplemoviesservice
-    image: ${DOCKER_REGISTRY-}simplemoviesservice
-    build:
-      context: .
-      dockerfile: SimpleMoviesService/Dockerfile
-    depends_on:
-        - simplemoviesdatabase
 
   simplemoviesdatabase:
     container_name: simplemoviesdatabase
@@ -18,3 +10,19 @@ services:
         MSSQL_SA_PASSWORD: SimpleMoviePassword2024!
     ports:
         - 1433:1433
+         
+  simplemoviesservice:
+    container_name: simplemoviesservice
+    image: ${DOCKER_REGISTRY-}simplemoviesservice
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - ASPNETCORE_HTTP_PORTS=8080
+        - ASPNETCORE_HTTPS_PORTS=8081
+    build:
+      context: .
+      dockerfile: SimpleMoviesService/Dockerfile
+    ports:
+        - "8080:8080"
+        - "8081:8081"
+    depends_on:
+        - simplemoviesdatabase
