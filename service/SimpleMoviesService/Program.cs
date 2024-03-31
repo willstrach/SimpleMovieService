@@ -12,10 +12,12 @@ builder.Services.AddProblemDetails();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+
 var app = builder.Build();
 app.UseExceptionHandler();
 
-app.MapApiEndpoints();
+app.MapEndpoints();
 app.UseStatusCodePages();
 
 app.UseSwagger();

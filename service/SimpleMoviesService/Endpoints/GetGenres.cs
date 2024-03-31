@@ -4,9 +4,19 @@ using SimpleMoviesService.Persistance;
 
 namespace SimpleMoviesService.Endpoints;
 
-public static class GetGenres
+public class GetGenresEndpoint : IEndpoint
 {
-    public static async Task<IResult> Handle([FromServices] IMoviesDbContext dbContext)
+    public void Map(IEndpointRouteBuilder app)
+    {
+        app.MapGet("genres", GetGenres)
+            .WithSummary("List genres")
+            .WithDescription("Get a list of genres")
+            .WithTags("Genres")
+            .Produces(200, typeof(List<GenreVm>))
+            .WithOpenApi();
+    }
+
+    public static async Task<IResult> GetGenres([FromServices] IMoviesDbContext dbContext)
     {
         var genres = await dbContext.Genres
             .OrderBy(genre => genre.Name)
@@ -16,13 +26,12 @@ public static class GetGenres
                 Name = genre.Name
             })
             .ToListAsync();
-
         return Results.Ok(genres);
     }
+}
 
-    public class GenreVm
-    {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-    }
+public class GenreVm
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
 }

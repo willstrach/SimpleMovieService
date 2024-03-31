@@ -4,14 +4,14 @@ namespace SimpleMoviesService.Utils;
 
 public static class ProblemDetailsBuilder
 {
-    public static ProblemDetails BadRequest(string message)
+    public static ProblemDetails BadRequest(params string[] messages)
     {
         return new ProblemDetails
         {
             Status = 400,
             Type = "https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.1",
             Title = "Bad Request",
-            Detail = message
+            Detail = string.Join(" && ", messages)
         };
     }
 }

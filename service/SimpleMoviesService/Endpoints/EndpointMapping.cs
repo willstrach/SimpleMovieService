@@ -1,25 +1,24 @@
 ﻿using SimpleMoviesService.Models;
+using System.Reflection;
 
 namespace SimpleMoviesService.Endpoints;
 
 public static class EndpointMapping
 {
-    public static IEndpointRouteBuilder MapApiEndpoints(this IEndpointRouteBuilder app)
+    public static void MapEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet("movies", GetMovies.Handle)
-            .WithSummary("List movies")
-            .WithDescription("Get a paginated list of movies")
-            .WithTags("Movies")
-            .Produces(200, typeof(PagedList<GetMovies.MovieVm>))
-            .WithOpenApi();
+        var endpointMapperTypes = Assembly.GetExecutingAssembly().GetTypes()
+            .Where(type => type.GetInterfaces().Contains(typeof(IEndpoint)));
 
-        app.MapGet("genres", GetGenres.Handle)
-            .WithSummary("List genres")
-            .WithDescription("Get a list of genres")
-            .WithTags("Genres")
-            .Produces(200, typeof(List<GetGenres.GenreVm>))
-            .WithOpenApi();
-
-        return app;
+        foreach (var endpointMapperType in endpointMapperTypes)
+        {
+            var endpointMapper = (IEndpoint)Activator.CreateInstance(endpointMapperType)!;
+            endpointMapper.Map(app);
+        }
     }
+}
+
+public interface IEndpoint
+{
+    void Map(IEndpointRouteBuilder app);
 }
